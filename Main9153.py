@@ -1,2 +1,12 @@
 print("Hello Jungol!")
 print("Hi Python")
+
+print()
+print(7 + 3)
+print(7 - 3)
+print(7 * 3)
+print(7 / 3)
+print(7 % 3)
+print()
+a, b, c = map(int, input().split())
+print(a + b + c)
