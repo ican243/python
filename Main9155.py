@@ -15,3 +15,13 @@ print('''Program number 3
 Program number 3''')
 print('Program','number', 3)
 print('Program', 'number', 3)
+print()
+
+print('*   *')
+print(' * *')
+print('  *')
+
+print()
+print('Apple', 'Banana', 'Carrot')
+
+print()
