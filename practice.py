@@ -1,20 +1,42 @@
 print('hello world')
 print('나는 임진휘')
 print("공부를 시작했다")
+print('----------연산자------------')
 print(5+2)
 print(5-2)
 print(5*2)
 print(5/2)
+print(5%2)
+print('------------비교 연산자---------')
+print(5>2)
+print(5>=2)
+print(5<2)
+print(5<=2)
+print(5 == 2)
+print(5 != 2)
+print()
+print(3<5 and 7<5)
+print(3<5 or 7<5)
+print(not 3<5)
+print()
+print('c' in 'cat')
+print('c' not in 'cat')
+print('--------------sep, enumerate 활용 -------------')
+x, y = 5, 7
+print(x, y, sep = "*")
+print("Hello", "JinHwi", sep = "")
 
+seasons = ['spring', 'summer', 'fall', 'winter']
+list(enumerate(seasons))
+for idx, val in enumerate(seasons):
+    print(idx, val)
+print()
 name = '임진휘'
 print(name)
-
+print()
 name = input("이름입력: ")
 print(name)
-
-Age = input("나이입력: ")
-print = (Age)
-
+print()
 age = int(input("나이입력: "))
 print = (age + 1)
 
