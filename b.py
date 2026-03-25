@@ -1,3 +1,6 @@
+from ntpath import sep
+
+
 print('C:\\Users\\Nadocoding')
 print()
 snack = '꿀꽈배기는\n 너무\n 맛있어요'
@@ -33,3 +36,5 @@ print()
 a = 5
 w = 10
 print(a, '+', w, '=', (a + w))
+print()
+print('l''i''k''e', sep ='@')

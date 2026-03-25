@@ -56,7 +56,33 @@ print()
 #print(a, '/', b, '=', a // b, '...', a % b)
 print()
 #a, b, c = map(int,input().split())
-#sum = (a+b+c)
+#sum = a+b+c
 #avg = (a+b+c)//3
 #print('sum =', sum)
 #print('avg =', avg)
+print()
+#a = int(input())
+#b = int(input())
+#c = int(input())
+#d = int(input())
+#e = int(input())
+#f = int(input())
+#g = int(input())
+#print((a + 2), (b - 2), (c * 2), (d / 2), (e // 2), (f % 2), (g ** 2))
+
+
+#a, b, c, d, e, f, g = map(int,input().split())
+#print(a+2, b-2, c*2, d/2, e//2, f%2, g**2)
+
+#a = int(input())
+#b = int(input())
+#c = int(input())
+#d = int(input())
+#e = int(input())
+#f = int(input())
+#g = int(input())
+#print(f"{a+2} {b-2} {c*2} {d/2} {e//2} {f%2} {g**2}")
+a = int(input()) #f-string 사용법
+b = int(input())
+print(f'{a} * {b} = {a*b}')
+
