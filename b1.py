@@ -1,0 +1,20 @@
+person = {'이름' : '임진휘', '나이' : '28세', '키' : '130', '몸무게' : '80', '음식' : '[밥, 돈가스]'} # 딕셔너리 활용 
+print(person['이름'])
+print(person['나이'])
+print(person['키'])
+print(person['몸무게'])
+print(person['음식'])
+#print(person.get('별명')) 
+person['최종학력'] = '대학교'
+print(person)
+person['키'] = 180 #리스트ㅡ 값 변경
+print(person)
+person.update({'키' : 140, '몸무게' : 75})
+print(person)
+person.pop('몸무게')
+print(person)
+#person.clear()
+print(person)
+print(person.keys())
+print(person.values())
+print(person.items())

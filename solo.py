@@ -90,6 +90,28 @@ print()
 #print(a)
 #print(a+10)
 
-a = int(input())#input 활용 f-string 활용
-b = int(input())
-print (f'{a-10} + {b*2} = {a-10+b*2}')
+#a = int(input())#input 활용 f-string 활용
+#b = int(input())
+#print (f'{a-10} + {b*2} = {a-10+b*2}')
+
+#a = 10
+#b = 5
+#print(a - b, '=', a, '-', b)
+#print(f'{a-b} = {a} - {b}')
+
+#my_set = {'돈가스', '보쌈', '제육덮밥'}
+#print(my_set[1])
+#my_set[1] = '빅파이'
+
+# a = int(input())
+# print(a)
+# print(a+10)
+
+#n = int(input())
+#print(f"{n}\n{n + 10}") # \n 줄바꿈 표시 
+my_list = ['뭉쉘', '초코파이', '빅파이', '빅파이', '빅파이']
+print(my_list)
+my_set = set(my_list)
+print(my_set)
+my_list = list(my_set)
+print(my_list)
