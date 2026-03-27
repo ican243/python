@@ -108,10 +108,25 @@ print()
 # print(a+10)
 
 #n = int(input())
-#print(f"{n}\n{n + 10}") # \n 줄바꿈 표시 
-my_list = ['뭉쉘', '초코파이', '빅파이', '빅파이', '빅파이']
-print(my_list)
-my_set = set(my_list)
-print(my_set)
-my_list = list(my_set)
-print(my_list)
+# #print(f"{n}\n{n + 10}") # \n 줄바꿈 표시 
+# my_list = ['뭉쉘', '초코파이', '빅파이', '빅파이', '빅파이']
+# print(my_list)
+# my_set = set(my_list)
+# print(my_set)
+# my_list = list(my_set)
+# print(my_list)
+
+
+
+
+
+
+# treeHit = 0
+# while treeHit < 10:
+#     treeHit = treeHit +1
+#     print(f'나무를 {treeHit}번 찍었습니다.')                                #while 사용 반복 진행 10까지만 나무를 찍고 마지막 print 문장 출력 하는 것것
+#     if treeHit == 10:
+#         print('나무가 넘어갑니다. 성공!!' )
+
+print(5, '+', 6, '=', 5+6)
+print(10, '-', 3, '=', 5+6)
