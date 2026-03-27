@@ -104,16 +104,13 @@
 # a, b = [int(input()) for _ in range(5)])
 
 
-# a = int(input())
-# b = int(input()) #9206 정올 문제
-# print(f'{a-10} + {b*2} = {a-10+b*2}')
+a = int(input())
+b = int(input()) #9206 정올 문제
+print(f'{a-10} + {b*2} = {a-10+b*2}')
 
-# a, b = map(int,input().split()) #9207 정올 문제
-# print(f'{a % 2} {b + 10} {a % 2 + b + 10}')
 
-# N = int(input())
-# A, B = map(int, input().split()) #9108 정올 연습문제
-# print(N == A, N == B, N != A, N != B)
 
-a,b = map(int, input().split()) #9209 정올 문제
-print(a == b, a != b, sep = '\n')
+
+
+
+
