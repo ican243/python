@@ -20,6 +20,11 @@
 #     print(i)
 #     i += 1
 
+
+
+
+
+#///// 연습문제  
 target = 'dlawlsgnl'
 
 while count < 5:

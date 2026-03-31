@@ -1,8 +1,5 @@
-num = 1
-sum = 2
-
-while num <= 10:
-    sum += num
-    num += 1
-
-print(sum)
+i = 1
+total = 0
+while i <= 10:
+    total +=i
+    i += 1
