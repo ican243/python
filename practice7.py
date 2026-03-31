@@ -30,3 +30,16 @@ class children(parent):
 p2 = children()
 p2.method_a
 p2.method_b
+
+
+
+
+
+
+
+
+
+
+
+
+
