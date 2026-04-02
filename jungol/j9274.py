@@ -6,8 +6,9 @@
 #     i += 1
 # print(total)
 
-N = int(input())
+# N = int(input())
 
-for i in range(1, N+1):
-    if i % 2 == 0:
-        print(i, end=" ")
+# for i in range(1, N+1): #for문 짝 수 구할떄
+#     if i % 2 == 0:
+#         print(i, end=" ")
+
