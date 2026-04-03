@@ -1,4 +1,3 @@
 N = int(input())
-for i in range(10, N+1, 10):
-    i.reversed()
+for i in reversed(range(10, N+1, 10)):
     print(i)
