@@ -14,10 +14,7 @@ print(lst3)
 print(lst)
 print(lst2)
 
-
 print('-----------')
-
-
 
 lst = []
 
