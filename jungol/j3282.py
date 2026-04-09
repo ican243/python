@@ -1,11 +1,13 @@
-A = "apple orange banana"
-lst = A.split()
-lst2 = lst[::-1]
-print(' '.join(lst2))
+# A = "apple orange banana"
+# lst = A.split()
+# lst2 = lst[::-1]
+# print(' '.join(lst2))
 
-B = '   Hello world!   '
+# B = '   Hello world!   '
 
-print(B)
+# print(B)
 
-lst3 = B.split()
-print(' '.join(lst3))
+# lst3 = B.split()
+# print(' '.join(lst3))
+
+
