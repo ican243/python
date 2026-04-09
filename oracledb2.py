@@ -17,19 +17,38 @@ def show_menu():
     print(menu_num)
     return menu_num
 
-def insert_emp(): # empno, ename, job, mgr, hiredate, sal, comm, deptno  
+def insert_emp(): 
     print("새로운 직원의 사번, 이름을 입력하세요....")
     empno, ename = input().split()
     print(empno, ename)
-
-#INSERT 예제
+    
     try:
-        # INSERT INTO EMP(EMPNO, ENAME) VALUES('1234','LEO')
         cursor.execute("INSERT INTO EMP(EMPNO, ENAME) VALUES (:1, :2)", [empno, ename.upper()])
         conn.commit()
         print("Data inserted successfully")
     except oracledb.DatabaseError as e:
         print(f"Error inserting data: {e}")
+        
+def delete_emp():
+    print("삭제할 직원의 번호를 입력하세요...")
+    empno = input()
+    print(empno)
+    cursor.execute("DELETE FROM emp WHERE empno = :1", [empno])
+    conn.commit()
+
+    if cursor.rowcount > 0:
+        print("Data deleted successfully")
+    else:
+        print("해당 사번이 없습니다.")
+
+def search_emp():
+    try:
+        cursor.execute("SELECT * FROM emp")
+
+        for row in cursor:
+            print(row)
+    except oracledb.DatabaseError as e:
+        print(f"Error fetching data: {e}")
 
 def search_emp():
 # SELECT 예제
