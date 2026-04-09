@@ -67,6 +67,7 @@ while loop:
         insert_emp()
     elif select == 2:
         print("2. 직원 삭제 메뉴")
+        delete_emp()
     elif select == 3:
         print("3. 직원 조회 메뉴")
         search_emp()
