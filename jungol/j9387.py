@@ -1,2 +1,3 @@
-print('My name is \"Hong Gildong\"')
-print('I\'m 15 years old')
+N = int(input())
+
+print(f'{N/3:.2f}')

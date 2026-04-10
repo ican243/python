@@ -39,3 +39,4 @@ name, bed, bath = input().split()
 h1 = hotel (name, bed, bath)
 #print(h1)
 h1.motel()
+
