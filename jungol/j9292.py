@@ -1,3 +1,3 @@
 N = int(input())
 for i in range(N):
-    print(f'Python {i}')
+    print('I like Python!')

@@ -1,0 +1,7 @@
+N = int(input())
+
+for j in range(1, 10):
+
+    print(f'{N} * {j} = {N*j}', end = '   ')
+    if j % 3 == 0:
+        print()
