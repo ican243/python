@@ -11,9 +11,11 @@
 num = int(input())
 num2 = int(input())
 if num > num2:
-        num, num2 = num2, num
+        go = -1
+else:
+        go = 1
 for j in range(1, 10):       
-    for i in range(num, num2 +1):
-    
-            print(f'{i} * {j} = {i * j}', end = '   ')
+    for i in range(num, num2 + go, go):
+        print(f'{i} * {j} = {i * j}', end = '   ')
     print()
+
