@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2안 - 매거진형 게시판</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, "Malgun Gothic", sans-serif;
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .badge {
+        display: inline-block;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 36px;
+      }
+      p.top-text {
+        color: #475569;
+        margin-bottom: 30px;
+      }
+      .board {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .item {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e2e8f0;
+        align-items: center;
+      }
+      .item:last-child {
+        border-bottom: none;
+      }
+      .thumb {
+        height: 130px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #334155;
+        font-weight: bold;
+      }
+      .meta {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .preview {
+        color: #475569;
+        line-height: 1.6;
+      }
+      @media (max-width: 800px) {
+        .item {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="badge">게시판 레이아웃 시안</div>
+      <h1>2안. 매거진형 게시판</h1>
+      <p class="top-text">썸네일과 미리보기가 함께 보이는 구조</p>
+
+      <div class="board">
+        <div class="item">
+          <div class="thumb">썸네일 1</div>
+          <div>
+            <div class="meta">공지 · 2026-04-17 · 관리자</div>
+            <div class="title">월요일 발표 자료 업로드 안내</div>
+            <div class="preview">
+              발표용 자료는 오늘 저녁 8시까지 업로드해 주세요.
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="thumb">썸네일 2</div>
+          <div>
+            <div class="meta">질문 · 2026-04-17 · jinhui</div>
+            <div class="title">Django 게시판 pagination 적용 질문</div>
+            <div class="preview">
+              페이지 번호를 어떻게 나누는지 아직 헷갈립니다.
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="thumb">썸네일 3</div>
+          <div>
+            <div class="meta">자유 · 2026-04-16 · study</div>
+            <div class="title">오늘 공부한 HTML/CSS 정리</div>
+            <div class="preview">
+              박스 모델, flex, margin, padding 내용을 정리했습니다.
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="thumb">썸네일 4</div>
+          <div>
+            <div class="meta">후기 · 2026-04-16 · junior</div>
+            <div class="title">첫 게시판 만들어본 후기</div>
+            <div class="preview">
+              글쓰기, 수정, 삭제까지 연결하니 진짜 사이트 같았습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+''' class Handler(BaseHTTPRequestHandler): def do_GET(self):
+self.send_response(200) self.send_header('Content-type', 'text/html;
+charset=utf-8') self.end_headers() self.wfile.write(HTML.encode('utf-8')) server
+= HTTPServer(('127.0.0.1', 8002), Handler) print('2안 서버 실행:
+http://127.0.0.1:8002') server.serve_forever()

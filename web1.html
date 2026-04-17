@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반응형 웹 예제</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        color: #222;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1d4ed8, #2563eb);
+        color: white;
+        padding: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .hero-box {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .hero-text h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+        color: #111827;
+      }
+
+      .hero-text p {
+        margin-bottom: 20px;
+        color: #4b5563;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        background: #2563eb;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+      }
+
+      .hero-image {
+        flex: 1;
+        min-height: 260px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 80px;
+      }
+
+      .section-title {
+        font-size: 30px;
+        margin-bottom: 25px;
+        text-align: center;
+        color: #111827;
+      }
+
+      .features {
+        padding: 30px 0 70px;
+      }
+
+      .card-wrap {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        flex: 1 1 calc(33.333% - 20px);
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      }
+
+      .card h3 {
+        margin-bottom: 12px;
+        color: #1d4ed8;
+      }
+
+      .card p {
+        color: #4b5563;
+      }
+
+      footer {
+        background: #111827;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-box {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-text h1 {
+          font-size: 32px;
+        }
+
+        .card {
+          flex: 1 1 calc(50% - 20px);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .header-inner {
+          flex-direction: column;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .hero {
+          padding: 30px 0;
+        }
+
+        .hero-box {
+          padding: 25px;
+        }
+
+        .hero-text h1 {
+          font-size: 26px;
+        }
+
+        .hero-image {
+          min-height: 180px;
+          font-size: 56px;
+        }
+
+        .card {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner">
+        <div class="logo">My Web</div>
+        <nav>
+          <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">서비스</a></li>
+            <li><a href="#">문의</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-box">
+          <div class="hero-text">
+            <h1>PC와 모바일에 모두 맞는 반응형 웹</h1>
+            <p>
+              이 예제는 화면이 넓으면 가로로 보이고, 화면이 좁으면 자동으로
+              세로로 바뀌도록 만든 반응형 웹 예제입니다.
+            </p>
+            <a href="#" class="btn">자세히 보기</a>
+          </div>
+          <div class="hero-image">📱💻</div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <h2 class="section-title">핵심 기능</h2>
+          <div class="card-wrap">
+            <div class="card">
+              <h3>반응형 레이아웃</h3>
+              <p>
+                PC에서는 카드가 가로로 보이고, 모바일에서는 세로로 한 장씩
+                보입니다.
+              </p>
+            </div>
+            <div class="card">
+              <h3>깔끔한 디자인</h3>
+              <p>
+                배경, 그림자, 버튼, 카드 스타일을 넣어서 실제 사이트 느낌이 나게
+                구성했습니다.
+              </p>
+            </div>
+            <div class="card">
+              <h3>외우기 좋은 구조</h3>
+              <p>
+                header, main, section, card 구조로 만들어서 웹 구조를 익히기에
+                좋습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 My Responsive Web Example</p>
+    </footer>
+  </body>
+</html>

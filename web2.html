@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>게시판 시안</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f1f5f9;
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .sidebar {
+        width: 200px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .content {
+        flex: 1;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        transition: 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      button {
+        padding: 10px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>게시판</h1>
+
+    <div class="container">
+      <!-- 좌측 메뉴 -->
+      <div class="sidebar">
+        <h3>카테고리</h3>
+        <p>전체글</p>
+        <p>공지사항</p>
+        <p>질문</p>
+        <p>자유</p>
+      </div>
+
+      <!-- 게시글 영역 -->
+      <div class="content">
+        <input placeholder="검색..." style="padding: 10px; width: 200px" />
+        <button>글쓰기</button>
+
+        <div class="card">
+          <h3>for문이 헷갈립니다</h3>
+          <p>작성자: jinhui</p>
+        </div>
+
+        <div class="card">
+          <h3>Django 질문 있습니다</h3>
+          <p>작성자: beginner</p>
+        </div>
+
+        <div class="card">
+          <h3>오늘 공부 정리</h3>
+          <p>작성자: study</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
