@@ -1,0 +1,2129 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBC아카데미</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary: #6d5dfc;
+        --primary-dark: #5b4cf5;
+        --primary-light: #ede9fe;
+        --secondary: #8d79ff;
+        --accent: #ff5f8f;
+        --accent-light: #fff1f6;
+        --text: #111827;
+        --subtext: #6b7280;
+        --line: #e9edf5;
+        --bg: #f7f8fc;
+        --white: #ffffff;
+        --shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+        --shadow-hover: 0 18px 42px rgba(15, 23, 42, 0.1);
+        --sidebar-width: 294px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        background:
+          radial-gradient(circle at top left, #efeaff 0%, transparent 28%),
+          radial-gradient(circle at top right, #edf3ff 0%, transparent 28%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .page-shell {
+        min-height: 100vh;
+      }
+
+      .left-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        border-right: 1px solid #e9edf5;
+        display: flex;
+        flex-direction: column;
+        z-index: 1200;
+        overflow: hidden;
+      }
+
+      .sidebar-top {
+        padding: 26px 20px 18px;
+        border-bottom: 1px solid #eef2f7;
+      }
+
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .sidebar-logo-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        box-shadow: 0 10px 24px rgba(109, 93, 252, 0.24);
+      }
+
+      .sidebar-logo-text strong {
+        display: block;
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      .sidebar-logo-text span {
+        display: block;
+        color: var(--subtext);
+        font-size: 0.82rem;
+        margin-top: 2px;
+      }
+
+      .sidebar-auth {
+        display: grid;
+        gap: 10px;
+      }
+
+      .sidebar-btn {
+        width: 100%;
+        border: none;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font-size: 0.96rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.22s ease;
+      }
+
+      .sidebar-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .sidebar-btn-login {
+        background: #fff;
+        color: #374151;
+        border: 1px solid #dbe2ef;
+      }
+
+      .sidebar-btn-join {
+        background: linear-gradient(135deg, var(--accent), #ff7aa4);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(255, 95, 143, 0.18);
+      }
+
+      .sidebar-find {
+        text-align: center;
+        color: var(--subtext);
+        font-size: 0.83rem;
+        margin-top: 2px;
+      }
+
+      .sidebar-body {
+        flex: 1;
+        overflow: auto;
+        padding: 22px 14px 18px;
+      }
+
+      .sidebar-section + .sidebar-section {
+        margin-top: 22px;
+      }
+
+      .sidebar-title {
+        font-size: 1.22rem;
+        font-weight: 900;
+        letter-spacing: -0.4px;
+        margin-bottom: 14px;
+      }
+
+      .sidebar-search {
+        position: relative;
+        margin-bottom: 14px;
+      }
+
+      .sidebar-search input {
+        width: 100%;
+        height: 46px;
+        border-radius: 15px;
+        border: 1px solid #e4e9f2;
+        background: #f8f9fd;
+        padding: 0 46px 0 16px;
+        outline: none;
+      }
+
+      .sidebar-search input:focus {
+        border-color: #cfc7ff;
+        background: #fff;
+      }
+
+      .sidebar-search span {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        color: #9ca3af;
+      }
+
+      .branch-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .branch-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 13px 12px;
+        border-radius: 16px;
+        transition: 0.2s ease;
+      }
+
+      .branch-item:hover {
+        background: #f7f8fc;
+      }
+
+      .branch-left {
+        min-width: 0;
+      }
+
+      .branch-left strong {
+        display: block;
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #1f2937;
+        line-height: 1.3;
+      }
+
+      .branch-left span {
+        display: block;
+        margin-top: 3px;
+        color: var(--subtext);
+        font-size: 0.8rem;
+      }
+
+      .branch-right {
+        flex-shrink: 0;
+        text-align: right;
+      }
+
+      .branch-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .sidebar-mini-card {
+        background: linear-gradient(135deg, #fff7fb, #f8f2ff);
+        border: 1px solid #f0dff0;
+        border-radius: 20px;
+        padding: 16px;
+      }
+
+      .sidebar-mini-card h4 {
+        font-size: 0.96rem;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+
+      .sidebar-mini-card p {
+        color: #6b7280;
+        font-size: 0.86rem;
+        margin-bottom: 12px;
+      }
+
+      .sidebar-mini-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .sidebar-mini-tags span {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #5b4cf5;
+      }
+
+      .page-main {
+        margin-left: var(--sidebar-width);
+      }
+
+      .container {
+        width: min(1180px, 92%);
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        font-size: 1.95rem;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+      }
+
+      .section-head p {
+        color: var(--subtext);
+        font-size: 0.95rem;
+        margin-top: 6px;
+      }
+
+      .section-head a {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .section-label {
+        display: inline-block;
+        margin-bottom: 14px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 800;
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 999px;
+        padding: 13px 22px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        box-shadow: 0 12px 28px rgba(109, 93, 252, 0.24);
+      }
+
+      .btn-outline {
+        background: #fff;
+        color: #374151;
+        border: 1px solid #d8dcef;
+      }
+
+      .btn-white {
+        background: #fff;
+        color: var(--primary);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .tag-gray {
+        background: #f3f4f6;
+        color: #6b7280;
+      }
+
+      .tag-purple {
+        background: #f3f0ff;
+        color: var(--primary);
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #eceef5;
+      }
+
+      .header-inner {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--primary);
+        letter-spacing: -0.5px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .nav a {
+        font-size: 0.98rem;
+        color: #374151;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--primary);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .hero {
+        padding: 78px 0 36px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        margin-bottom: 18px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-weight: 800;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.88rem;
+      }
+
+      .hero h1 {
+        font-size: 3.3rem;
+        line-height: 1.16;
+        font-weight: 900;
+        letter-spacing: -1.15px;
+        margin-bottom: 18px;
+      }
+
+      .hero p {
+        font-size: 1.08rem;
+        color: var(--subtext);
+        margin-bottom: 28px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid #edf1f7;
+        border-radius: 18px;
+        padding: 14px 16px;
+        min-width: 140px;
+      }
+
+      .hero-stat strong {
+        display: block;
+        color: var(--text);
+        font-size: 1.2rem;
+        font-weight: 900;
+      }
+
+      .hero-stat span {
+        color: #4b5563;
+        font-size: 0.9rem;
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .hero-card {
+        background: #fff;
+        border-radius: 30px;
+        padding: 22px;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        border: 1px solid #eef1f6;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 430px;
+        border-radius: 24px;
+        background:
+          radial-gradient(
+            circle at 18% 18%,
+            rgba(255, 255, 255, 0.55),
+            transparent 24%
+          ),
+          linear-gradient(135deg, #d9d6ff, #f7d9ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+      }
+
+      .floating-mini {
+        position: absolute;
+        right: -18px;
+        bottom: 22px;
+        width: 230px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 16px 18px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        font-size: 0.94rem;
+      }
+
+      .floating-mini strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .search-wrap {
+        margin-top: 30px;
+      }
+
+      .search-box {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid #e7ecf5;
+        border-radius: 24px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr auto;
+        gap: 12px;
+      }
+
+      .search-item {
+        background: #f8faff;
+        border: 1px solid #e9edf7;
+        border-radius: 16px;
+        padding: 14px 16px;
+      }
+
+      .search-item label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--subtext);
+        margin-bottom: 4px;
+      }
+
+      .search-item input,
+      .search-item select {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--text);
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .trust-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ebeff5;
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition: 0.25s ease;
+      }
+
+      .trust-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .trust-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #f3f0ff, #eef2ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.55rem;
+        margin-bottom: 14px;
+      }
+
+      .trust-card h3 {
+        font-size: 1.03rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .trust-card p {
+        color: var(--subtext);
+        font-size: 0.92rem;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 18px;
+      }
+
+      .category-card {
+        background: #fff;
+        border: 1px solid #eceff7;
+        border-radius: 24px;
+        padding: 24px 14px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+        transition: 0.25s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-4px);
+        border-color: #dcd7ff;
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .category-icon {
+        width: 68px;
+        height: 68px;
+        margin: 0 auto 14px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f3f0ff, #eef2ff);
+        font-size: 1.8rem;
+      }
+
+      .category-card h3 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+
+      .category-card p {
+        color: var(--subtext);
+        font-size: 0.84rem;
+      }
+
+      .lesson-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .filter-btn {
+        border: 1px solid #dce2ef;
+        background: #fff;
+        color: #4b5563;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+      }
+
+      .lesson-card {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid #ebeff5;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+        transition: 0.25s ease;
+      }
+
+      .lesson-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .lesson-card.hide {
+        display: none;
+      }
+
+      .lesson-thumb {
+        height: 155px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        background: linear-gradient(135deg, #ddd6fe, #f5d0fe);
+      }
+
+      .lesson-body {
+        padding: 18px;
+      }
+
+      .lesson-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .lesson-body h3 {
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1.4;
+        margin-bottom: 8px;
+      }
+
+      .lesson-body p {
+        color: var(--subtext);
+        font-size: 0.92rem;
+        min-height: 48px;
+        margin-bottom: 14px;
+      }
+
+      .lesson-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .lesson-meta {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.88rem;
+      }
+
+      .lesson-price {
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #374151;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .process-card {
+        background: #fff;
+        border: 1px solid #ebeff5;
+        border-radius: 24px;
+        padding: 28px 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .process-num {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        margin-bottom: 16px;
+      }
+
+      .process-card h3 {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .process-card p {
+        color: var(--subtext);
+        font-size: 0.92rem;
+      }
+
+      .community-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+      }
+
+      .community-panel,
+      .community-mini,
+      .faq-item,
+      .review-slider {
+        background: #fff;
+        border-radius: 24px;
+        border: 1px solid #ebeff5;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+      }
+
+      .community-panel,
+      .community-mini {
+        padding: 22px;
+      }
+
+      .community-panel h3,
+      .community-mini h3 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+
+      .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .post-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid #eef1f6;
+      }
+
+      .post-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .post-main {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .post-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--primary);
+        background: #f3f0ff;
+        padding: 5px 9px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+      }
+
+      .post-title {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+        line-height: 1.4;
+      }
+
+      .post-desc {
+        color: var(--subtext);
+        font-size: 0.9rem;
+      }
+
+      .post-meta {
+        text-align: right;
+        min-width: 72px;
+        color: var(--subtext);
+        font-size: 0.82rem;
+      }
+
+      .post-meta strong {
+        display: block;
+        color: var(--primary);
+        font-weight: 800;
+        font-size: 0.88rem;
+        margin-bottom: 4px;
+      }
+
+      .community-side {
+        display: grid;
+        gap: 20px;
+      }
+
+      .community-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .community-tags span {
+        display: inline-flex;
+        align-items: center;
+        padding: 9px 13px;
+        border-radius: 999px;
+        background: #f5f7fb;
+        color: #4b5563;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .community-ranking li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 1px solid #eef1f6;
+        font-size: 0.92rem;
+        color: #374151;
+      }
+
+      .community-ranking li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .community-ranking strong {
+        color: var(--text);
+      }
+
+      .review-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .slider-controls {
+        display: flex;
+        gap: 10px;
+      }
+
+      .slider-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid #dbe1ed;
+        background: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 900;
+        transition: 0.2s ease;
+      }
+
+      .slider-btn:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      .review-slider {
+        overflow: hidden;
+        padding: 24px;
+      }
+
+      .review-track {
+        display: flex;
+        transition: transform 0.35s ease;
+      }
+
+      .review-card {
+        min-width: calc(100% / 3);
+        padding: 0 10px;
+      }
+
+      .review-card-inner {
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid #edf1f6;
+        padding: 22px;
+        height: 100%;
+      }
+
+      .stars {
+        color: #f59e0b;
+        font-size: 1rem;
+        margin-bottom: 14px;
+      }
+
+      .review-title {
+        font-size: 1.04rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .review-text {
+        color: var(--subtext);
+        font-size: 0.95rem;
+        min-height: 108px;
+        margin-bottom: 18px;
+      }
+
+      .review-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #c4b5fd, #f9a8d4);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+      }
+
+      .review-user strong {
+        display: block;
+        font-size: 0.95rem;
+      }
+
+      .review-user span {
+        color: var(--subtext);
+        font-size: 0.86rem;
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .faq-item {
+        overflow: hidden;
+      }
+
+      .faq-question {
+        width: 100%;
+        border: none;
+        background: #fff;
+        padding: 22px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+
+      .faq-icon {
+        color: var(--primary);
+        font-size: 1.1rem;
+        transition: 0.25s ease;
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 22px;
+        color: var(--subtext);
+        font-size: 0.94rem;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 140px;
+        padding: 0 22px 22px;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        border-radius: 32px;
+        padding: 42px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        box-shadow: 0 18px 50px rgba(109, 93, 252, 0.28);
+      }
+
+      .cta-box h2 {
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+
+      .cta-box p {
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .footer {
+        background: #111827;
+        color: #c7cedb;
+        padding: 38px 0;
+        margin-top: 48px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer strong {
+        display: block;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 10px;
+      }
+
+      .footer-links a {
+        color: #dbe2f1;
+      }
+
+      @media (max-width: 1350px) {
+        .lesson-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .hero-inner,
+        .community-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .search-box {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .trust-grid,
+        .process-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .categories-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .lesson-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .review-card {
+          min-width: calc(100% / 2);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .left-sidebar {
+          position: static;
+          width: 100%;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid #e9edf5;
+        }
+
+        .sidebar-body {
+          max-height: none;
+        }
+
+        .page-main {
+          margin-left: 0;
+        }
+
+        .header {
+          position: static;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .header-actions .btn-outline {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.35rem;
+        }
+
+        .hero-image {
+          height: 320px;
+        }
+
+        .floating-mini {
+          position: static;
+          width: 100%;
+          margin-top: 16px;
+        }
+
+        .section {
+          padding: 58px 0;
+        }
+
+        .search-box,
+        .trust-grid,
+        .categories-grid,
+        .lesson-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .post-item {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .post-meta {
+          text-align: left;
+          min-width: auto;
+        }
+
+        .review-card {
+          min-width: 100%;
+        }
+
+        .sidebar-top,
+        .sidebar-body {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="left-sidebar">
+        <div class="sidebar-top">
+          <div class="sidebar-logo">
+            <div class="sidebar-logo-badge">M</div>
+            <div class="sidebar-logo-text">
+              <strong>MBC아카데미</strong>
+              <span>캠퍼스 안내 · 수강 상담</span>
+            </div>
+          </div>
+
+          <div class="sidebar-auth">
+            <button class="sidebar-btn sidebar-btn-login" type="button">
+              로그인
+            </button>
+            <button class="sidebar-btn sidebar-btn-join" type="button">
+              MBC아카데미 상담신청
+            </button>
+            <div class="sidebar-find">아이디/비밀번호 찾기</div>
+          </div>
+        </div>
+
+        <div class="sidebar-body">
+          <section class="sidebar-section">
+            <h3 class="sidebar-title">우리 지점 둘러보기</h3>
+            <div class="sidebar-search">
+              <input type="text" placeholder="찾으시는 캠퍼스를 검색하세요." />
+              <span>🔍</span>
+            </div>
+
+            <div class="branch-list">
+              <a href="#" class="branch-item">
+                <div class="branch-left">
+                  <strong>MBC아카데미 종로</strong>
+                  <span>본점 · 상담 가능</span>
+                </div>
+                <div class="branch-right">
+                  <span class="branch-badge">대표</span>
+                </div>
+              </a>
+
+              <a href="#" class="branch-item">
+                <div class="branch-left">
+                  <strong>MBC아카데미 영등포</strong>
+                  <span>국비 · 취업과정 운영</span>
+                </div>
+                <div class="branch-right">
+                  <span class="branch-badge">인기</span>
+                </div>
+              </a>
+
+              <a href="#" class="branch-item">
+                <div class="branch-left">
+                  <strong>MBC아카데미 천호</strong>
+                  <span>프로그래밍 · 디자인</span>
+                </div>
+                <div class="branch-right">
+                  <span class="branch-badge">추천</span>
+                </div>
+              </a>
+
+              <a href="#" class="branch-item">
+                <div class="branch-left">
+                  <strong>MBC아카데미 신도림</strong>
+                  <span>실무 중심 커리큘럼</span>
+                </div>
+                <div class="branch-right">
+                  <span class="branch-badge">신규</span>
+                </div>
+              </a>
+
+              <a href="#" class="branch-item">
+                <div class="branch-left">
+                  <strong>MBC아카데미 화곡</strong>
+                  <span>자격증 · OA · 디자인</span>
+                </div>
+                <div class="branch-right">
+                  <span class="branch-badge">상담중</span>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <section class="sidebar-section">
+            <div class="sidebar-mini-card">
+              <h4>빠른 상담 캠퍼스</h4>
+              <p>영등포 · 천호 지점은 상담 문의가 많아 빠른 접수가 좋아요.</p>
+              <div class="sidebar-mini-tags">
+                <span>#영등포</span>
+                <span>#천호</span>
+                <span>#웹개발</span>
+                <span>#국비지원</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <main class="page-main">
+        <header class="header">
+          <div class="container header-inner">
+            <a href="#" class="logo">MBC아카데미</a>
+
+            <nav class="nav">
+              <a href="#categories">카테고리</a>
+              <a href="#popular">인기있는 교육</a>
+              <a href="#process">이용 방법</a>
+              <a href="#community">커뮤니티</a>
+              <a href="#reviews">후기</a>
+              <a href="#faq">FAQ</a>
+            </nav>
+
+            <div class="header-actions">
+              <a href="#" class="btn btn-outline">로그인</a>
+              <a href="#" class="btn btn-primary">수업 요청하기</a>
+            </div>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="hero-badge">1분 요청서 작성 · 빠른 매칭</span>
+              <h1>나에게 딱 맞는<br />수업 강사님을 확인해보세요</h1>
+              <p>
+                원하는 수업을 간단히 작성하면, 여러 강사님의 제안을 받아보고
+                나에게 맞는 수업을 쉽게 선택할 수 있어요.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#" class="btn btn-primary">교육 상담 신청하기</a>
+                <a href="#popular" class="btn btn-outline">교육 둘러보기</a>
+              </div>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <strong>1분</strong>
+                  <span>요청서 작성 시간</span>
+                </div>
+                <div class="hero-stat">
+                  <strong>500+</strong>
+                  <span>인기 레슨 카테고리</span>
+                </div>
+                <div class="hero-stat">
+                  <strong>5.0</strong>
+                  <span>실제 수강 후기 평점</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="hero-card">
+                <div class="hero-image">🎓</div>
+              </div>
+              <div class="floating-mini">
+                <strong>추천 매칭 진행 중</strong>
+                AI 프로그래밍, 자격증, 웹개발 등 <br />
+                원하는 수업 제안을 받아보세요.
+              </div>
+            </div>
+          </div>
+
+          <div class="container search-wrap">
+            <div class="search-box">
+              <div class="search-item">
+                <label>어떤 수업을 찾고 있나요?</label>
+                <input
+                  type="text"
+                  placeholder="예: 웹개발, AI, 자격증, 데이터베이스"
+                />
+              </div>
+              <div class="search-item">
+                <label>희망 카테고리</label>
+                <select>
+                  <option>전체 카테고리</option>
+                  <option>프로그래밍</option>
+                  <option>웹개발</option>
+                  <option>데이터베이스</option>
+                  <option>디자인</option>
+                  <option>자격증</option>
+                </select>
+              </div>
+              <div class="search-item">
+                <label>희망 방식</label>
+                <select>
+                  <option>전체</option>
+                  <option>오프라인</option>
+                  <option>온라인</option>
+                  <option>주말반</option>
+                  <option>평일반</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" type="button">검색하기</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <span class="section-label">왜 선택할까요?</span>
+            <div class="section-head">
+              <div>
+                <h2>처음 보는 사람도 믿을 수 있는 이유</h2>
+                <p>
+                  소개형 페이지에서 한 단계 올라가려면 신뢰 요소가 꼭 들어가면
+                  좋아.
+                </p>
+              </div>
+            </div>
+
+            <div class="trust-grid">
+              <article class="trust-card">
+                <div class="trust-icon">🧑‍🏫</div>
+                <h3>검증된 강사진</h3>
+                <p>
+                  분야별 강의 경험과 커리큘럼을 기반으로 맞춤 수업을 제안해요.
+                </p>
+              </article>
+
+              <article class="trust-card">
+                <div class="trust-icon">⚡</div>
+                <h3>빠른 제안 도착</h3>
+                <p>
+                  원하는 조건을 입력하면 빠르게 강사님의 제안을 받아볼 수
+                  있어요.
+                </p>
+              </article>
+
+              <article class="trust-card">
+                <div class="trust-icon">📚</div>
+                <h3>기초부터 실무까지</h3>
+                <p>
+                  처음 배우는 사람도 쉽게 따라올 수 있도록 단계별로 진행해요.
+                </p>
+              </article>
+
+              <article class="trust-card">
+                <div class="trust-icon">💬</div>
+                <h3>실제 후기 기반 선택</h3>
+                <p>
+                  수강 후기와 만족도를 보고 나에게 맞는 수업을 고를 수 있어요.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="categories">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>카테고리</h2>
+                <p>지금 많이 찾는 교육 분야를 한눈에 볼 수 있어요.</p>
+              </div>
+              <a href="#">전체 보기</a>
+            </div>
+
+            <div class="categories-grid">
+              <article class="category-card">
+                <div class="category-icon">🌍</div>
+                <h3>AI 메타버스</h3>
+                <p>가상공간 · 3D · 실감형 콘텐츠</p>
+              </article>
+              <article class="category-card">
+                <div class="category-icon">💻</div>
+                <h3>프로그래밍</h3>
+                <p>기초 코딩부터 실무까지</p>
+              </article>
+              <article class="category-card">
+                <div class="category-icon">🌐</div>
+                <h3>웹개발</h3>
+                <p>HTML · CSS · JS · 백엔드</p>
+              </article>
+              <article class="category-card">
+                <div class="category-icon">🗄️</div>
+                <h3>데이터베이스</h3>
+                <p>SQL · 설계 · 실습 중심</p>
+              </article>
+              <article class="category-card">
+                <div class="category-icon">📈</div>
+                <h3>AI 주식</h3>
+                <p>데이터 분석 기반 입문</p>
+              </article>
+              <article class="category-card">
+                <div class="category-icon">🎨</div>
+                <h3>AI디자인</h3>
+                <p>생성형 디자인 실무</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="popular">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>인기있는 레슨</h2>
+                <p>탭을 눌러서 카테고리별로 바로 골라볼 수 있게 만들었어.</p>
+              </div>
+              <a href="#">더보기</a>
+            </div>
+
+            <div class="lesson-filter">
+              <button class="filter-btn active" data-filter="all">전체</button>
+              <button class="filter-btn" data-filter="web">웹개발</button>
+              <button class="filter-btn" data-filter="design">디자인</button>
+              <button class="filter-btn" data-filter="license">자격증</button>
+              <button class="filter-btn" data-filter="ai">AI</button>
+            </div>
+
+            <div class="lesson-grid" id="lessonGrid">
+              <article class="lesson-card" data-category="web ai">
+                <div class="lesson-thumb">✺</div>
+                <div class="lesson-body">
+                  <div class="lesson-top">
+                    <span class="tag tag-gray">웹개발</span>
+                    <span class="tag tag-purple">인기</span>
+                  </div>
+                  <h3>챗GPT & DevOps</h3>
+                  <p>프로그래머를 꿈꾸는 예비 개발자 맞춤형 진행</p>
+                  <div class="lesson-footer">
+                    <div class="lesson-meta">요청하기</div>
+                    <div class="lesson-price">상담 후 안내</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="lesson-card" data-category="design">
+                <div class="lesson-thumb">🖱️</div>
+                <div class="lesson-body">
+                  <div class="lesson-top">
+                    <span class="tag tag-gray">영상</span>
+                    <span class="tag tag-purple">추천</span>
+                  </div>
+                  <h3>영상편집 및 크리에이터 양성과정</h3>
+                  <p>노멀한 삶을 바꿔줄 취미를 원하시는 분</p>
+                  <div class="lesson-footer">
+                    <div class="lesson-meta">요청하기</div>
+                    <div class="lesson-price">상담 후 안내</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="lesson-card" data-category="ai design">
+                <div class="lesson-thumb">🏢</div>
+                <div class="lesson-body">
+                  <div class="lesson-top">
+                    <span class="tag tag-gray">건축</span>
+                    <span class="tag tag-purple">신규</span>
+                  </div>
+                  <h3>AI, VR을 활용한 메타버스 건축</h3>
+                  <p>3D 그래픽 디자인 분야에 관심 있으신 분</p>
+                  <div class="lesson-footer">
+                    <div class="lesson-meta">요청하기</div>
+                    <div class="lesson-price">상담 후 안내</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="lesson-card" data-category="license">
+                <div class="lesson-thumb">🎹</div>
+                <div class="lesson-body">
+                  <div class="lesson-top">
+                    <span class="tag tag-gray">자격증</span>
+                    <span class="tag tag-purple">베스트</span>
+                  </div>
+                  <h3>전산세무 1급 자격증</h3>
+                  <p>경리직 또는 회계직으로 취업하고 싶으신 분</p>
+                  <div class="lesson-footer">
+                    <div class="lesson-meta">요청하기</div>
+                    <div class="lesson-price">상담 후 안내</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="lesson-card" data-category="design web">
+                <div class="lesson-thumb">🎨</div>
+                <div class="lesson-body">
+                  <div class="lesson-top">
+                    <span class="tag tag-gray">디자인</span>
+                    <span class="tag tag-purple">실무형</span>
+                  </div>
+                  <h3>웹디자인 기능사</h3>
+                  <p>웹디자이너를 꿈꾸는 예비 웹디자이너 추천</p>
+                  <div class="lesson-footer">
+                    <div class="lesson-meta">요청하기</div>
+                    <div class="lesson-price">상담 후 안내</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="process">
+          <div class="container">
+            <span class="section-label">이용 방법</span>
+            <div class="section-head">
+              <div>
+                <h2>처음이어도 쉬운 4단계</h2>
+                <p>서비스 구조가 보이면 사용자도 훨씬 편하게 느껴.</p>
+              </div>
+            </div>
+
+            <div class="process-grid">
+              <article class="process-card">
+                <div class="process-num">01</div>
+                <h3>수업 요청서 작성</h3>
+                <p>배우고 싶은 내용, 시간, 방식 등을 간단하게 입력해요.</p>
+              </article>
+
+              <article class="process-card">
+                <div class="process-num">02</div>
+                <h3>강사 제안 확인</h3>
+                <p>조건에 맞는 강사님의 제안을 비교하고 확인할 수 있어요.</p>
+              </article>
+
+              <article class="process-card">
+                <div class="process-num">03</div>
+                <h3>상담 및 일정 조율</h3>
+                <p>원하는 시간과 난이도에 맞게 수업 방향을 조정해요.</p>
+              </article>
+
+              <article class="process-card">
+                <div class="process-num">04</div>
+                <h3>수업 시작</h3>
+                <p>나에게 맞는 방식으로 꾸준하게 수업을 진행하면 돼요.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="community">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <h2>동네 커뮤니티</h2>
+                <p>
+                  실제 사용자들이 오가는 느낌이 있으면 사이트가 더 살아 보여.
+                </p>
+              </div>
+              <a href="#">더보기</a>
+            </div>
+
+            <div class="community-wrap">
+              <div class="community-panel">
+                <h3>🔥 인기글</h3>
+
+                <div class="post-list">
+                  <article class="post-item">
+                    <div class="post-main">
+                      <span class="post-badge">맛집</span>
+                      <div class="post-title">
+                        잠실역 근처 수업 끝나고 가기 좋은 맛집 추천 좀
+                      </div>
+                      <div class="post-desc">
+                        가성비 괜찮고 혼밥도 가능한 곳이면 더 좋음
+                      </div>
+                    </div>
+                    <div class="post-meta">
+                      <strong>댓글 12</strong>
+                      5분 전
+                    </div>
+                  </article>
+
+                  <article class="post-item">
+                    <div class="post-main">
+                      <span class="post-badge">질문</span>
+                      <div class="post-title">
+                        웹개발 수업 듣는 사람들 과제 난이도 어느 정도임?
+                      </div>
+                      <div class="post-desc">
+                        HTML, CSS는 했는데 JS부터 좀 걱정됨
+                      </div>
+                    </div>
+                    <div class="post-meta">
+                      <strong>댓글 8</strong>
+                      18분 전
+                    </div>
+                  </article>
+
+                  <article class="post-item">
+                    <div class="post-main">
+                      <span class="post-badge">후기</span>
+                      <div class="post-title">
+                        전산세무 수업 들은 사람 후기 좀 알려주세요
+                      </div>
+                      <div class="post-desc">
+                        자격증 준비용으로 괜찮은지 궁금해요
+                      </div>
+                    </div>
+                    <div class="post-meta">
+                      <strong>댓글 5</strong>
+                      27분 전
+                    </div>
+                  </article>
+
+                  <article class="post-item">
+                    <div class="post-main">
+                      <span class="post-badge">같이해요</span>
+                      <div class="post-title">
+                        주말 오전에 같이 스터디하실 분 있나요?
+                      </div>
+                      <div class="post-desc">
+                        웹개발 기초 복습 위주로 같이 하면 좋을 것 같아요
+                      </div>
+                    </div>
+                    <div class="post-meta">
+                      <strong>댓글 3</strong>
+                      42분 전
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <div class="community-side">
+                <div class="community-mini">
+                  <h3>💬 자주 올라오는 주제</h3>
+                  <div class="community-tags">
+                    <span>#잠실 맛집</span>
+                    <span>#과제 질문</span>
+                    <span>#자격증 후기</span>
+                    <span>#스터디 모집</span>
+                    <span>#강사 추천</span>
+                    <span>#취업 고민</span>
+                  </div>
+                </div>
+
+                <div class="community-mini">
+                  <h3>📍 실시간 동네 인기 토픽</h3>
+                  <ul class="community-ranking">
+                    <li>
+                      <strong>1</strong><span>석촌역 주변 카페 추천</span>
+                    </li>
+                    <li>
+                      <strong>2</strong><span>웹개발 수업 난이도 질문</span>
+                    </li>
+                    <li><strong>3</strong><span>자격증반 실제 후기</span></li>
+                    <li>
+                      <strong>4</strong><span>같이 공부할 사람 구해요</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="reviews">
+          <div class="container">
+            <div class="review-top">
+              <div>
+                <span class="section-label">수강 후기</span>
+                <h2>수강생들의 생생후기</h2>
+                <p style="color: var(--subtext); margin-top: 6px">
+                  버튼으로 좌우 이동되게 만들어서 정적인 느낌을 줄였어.
+                </p>
+              </div>
+
+              <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn" type="button">←</button>
+                <button class="slider-btn" id="nextBtn" type="button">→</button>
+              </div>
+            </div>
+
+            <div class="review-slider">
+              <div class="review-track" id="reviewTrack">
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">챗GPT & DevOps</div>
+                    <p class="review-text">
+                      부족한 부분을 정확히 캐치해서 꼼꼼하게 가르쳐주셔서
+                      자연스러운 표현을 배우는 데 정말 도움이 되었어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">임</div>
+                      <div>
+                        <strong>수강생 임*휘님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">웹디자인 기능사</div>
+                    <p class="review-text">
+                      많이 부족했는데도 항상 차분하게 기다려주시고, 잘할 수
+                      있도록 도와주셔서 정말 만족스러웠어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">유</div>
+                      <div>
+                        <strong>수강생 유*호님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">전산세무 1급 자격증</div>
+                    <p class="review-text">
+                      이해가 될 때까지 설명해주시고 안 되는 부분도 할 수 있을
+                      때까지 친절하게 도와주셔서 좋았어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">김</div>
+                      <div>
+                        <strong>수강생 김*영님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">웹개발 기초반</div>
+                    <p class="review-text">
+                      완전 초보였는데도 HTML부터 CSS, JS까지 순서대로 알려주셔서
+                      덜 무서웠고 자신감이 생겼어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">박</div>
+                      <div>
+                        <strong>수강생 박*민님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">데이터베이스 실습반</div>
+                    <p class="review-text">
+                      SQL을 어렵게만 느꼈는데 실습 위주로 진행해서 테이블,
+                      SELECT, JOIN 개념을 이해하는 데 도움됐어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">최</div>
+                      <div>
+                        <strong>수강생 최*수님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="review-card">
+                  <div class="review-card-inner">
+                    <div class="stars">★★★★★</div>
+                    <div class="review-title">AI디자인 입문반</div>
+                    <p class="review-text">
+                      디자인툴과 생성형 AI를 같이 배울 수 있어서 결과물이 빨리
+                      나와서 재미있게 배웠어요.
+                    </p>
+                    <div class="review-user">
+                      <div class="avatar">한</div>
+                      <div>
+                        <strong>수강생 한*진님</strong>
+                        <span>평점 5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="container">
+            <span class="section-label">자주 묻는 질문</span>
+            <div class="section-head">
+              <div>
+                <h2>FAQ</h2>
+                <p>눌렀을 때 열리는 아코디언 형태로 만들었어.</p>
+              </div>
+            </div>
+
+            <div class="faq-list">
+              <article class="faq-item">
+                <button class="faq-question" type="button">
+                  <span>Q. 수업 요청서는 얼마나 걸리나요?</span>
+                  <span class="faq-icon">＋</span>
+                </button>
+                <div class="faq-answer">
+                  보통 1분 내외로 작성할 수 있으며, 배우고 싶은 내용과 희망
+                  시간만 적어도 충분해요.
+                </div>
+              </article>
+
+              <article class="faq-item">
+                <button class="faq-question" type="button">
+                  <span>Q. 초보자도 신청 가능한가요?</span>
+                  <span class="faq-icon">＋</span>
+                </button>
+                <div class="faq-answer">
+                  네. 기초부터 배우고 싶은 분들을 위한 입문형 수업도 준비되어
+                  있어요.
+                </div>
+              </article>
+
+              <article class="faq-item">
+                <button class="faq-question" type="button">
+                  <span>Q. 온라인 / 오프라인 모두 가능한가요?</span>
+                  <span class="faq-icon">＋</span>
+                </button>
+                <div class="faq-answer">
+                  가능합니다. 수업 방식은 상담 과정에서 원하는 형태로 조율할 수
+                  있어요.
+                </div>
+              </article>
+
+              <article class="faq-item">
+                <button class="faq-question" type="button">
+                  <span>Q. 수업 난이도는 맞춰서 조정되나요?</span>
+                  <span class="faq-icon">＋</span>
+                </button>
+                <div class="faq-answer">
+                  상담 후 초급, 중급, 실무형 등으로 난이도를 조정할 수 있어서
+                  처음 배우는 분도 부담이 적어요.
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <div class="cta-box">
+              <div>
+                <h2>원하는 수업, 지금 바로 시작해보세요</h2>
+                <p>간단한 요청서 작성 후 선생님들의 제안을 받아볼 수 있어요.</p>
+              </div>
+              <a href="#" class="btn btn-white">수업 요청하기</a>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="container footer-inner">
+            <div>
+              <strong>MBC아카데미</strong>
+              <p>(C)2026 MBC아카데미, Since1996 대표 임진휘</p>
+              <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">고객센터</a>
+              </div>
+            </div>
+
+            <div>
+              <strong>Contact</strong>
+              <p>대표전화 : 010-1234-5678</p>
+              <p>이메일 : mbcacademy@email.com</p>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const lessonCards = document.querySelectorAll(".lesson-card");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          const filter = button.dataset.filter;
+
+          lessonCards.forEach((card) => {
+            const category = card.dataset.category;
+
+            if (filter === "all" || category.includes(filter)) {
+              card.classList.remove("hide");
+            } else {
+              card.classList.add("hide");
+            }
+          });
+        });
+      });
+
+      const reviewTrack = document.getElementById("reviewTrack");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const reviewCards = document.querySelectorAll(".review-card");
+
+      let currentIndex = 0;
+
+      function getVisibleCount() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1180) return 2;
+        return 3;
+      }
+
+      function updateSlider() {
+        const visibleCount = getVisibleCount();
+        const maxIndex = reviewCards.length - visibleCount;
+
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+        const movePercent = 100 / visibleCount;
+        reviewTrack.style.transform = `translateX(-${currentIndex * movePercent}%)`;
+      }
+
+      nextBtn.addEventListener("click", () => {
+        currentIndex += 1;
+        updateSlider();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        currentIndex -= 1;
+        updateSlider();
+      });
+
+      window.addEventListener("resize", updateSlider);
+      updateSlider();
+
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", () => {
+          const isActive = item.classList.contains("active");
+
+          faqItems.forEach((faq) => faq.classList.remove("active"));
+
+          if (!isActive) {
+            item.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
