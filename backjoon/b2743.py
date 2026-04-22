@@ -1,19 +1,10 @@
-#inp = input()
-#print(len(inp)) 
-#print()
-#inp = input('단어입력: ')
-#num = int(input('번호입력 : '))
-#print(inp[num - 1])
-#print()
-#s = str(input())
-#i = int(input())
-#lst = list(s)
-#print(lst[i])
-#print()
-s = input()
-i = input()
-#print(s)
-#rint(i)
-n = int(i)
-print(n)
-print(s[n-1])
+while True:
+    N = int(input())
+    if N == 3:
+        print('three')
+    elif N == 2:
+        print('two')
+    elif N == 1:
+        print('one')
+    else:
+        break
