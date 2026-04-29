@@ -1,5 +1,3 @@
-N = int(input())
-if N >= 12 and N <=24:
-    print('PM')
-elif N>= 1 and N<=11:
-    print('AM')
+a = int(input())
+b = int(input())
+print(a - b)
