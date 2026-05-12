@@ -1,14 +1,15 @@
-def drow(n):
-    num = 1
-    for i in range(n):
-        for j in range(n):
-            print(num, end=' ')
-            num += 1
-        print()
 
-N = int(input())
+def solution(num_list):
+    total = 0
+    total2 = 0
+    
+    for i in num_list:
+        if i % 2 == 0:
+            total += 1
+        else:
+            total2 += 1
+    answer = [total, total2]
+    return answer
 
-drow(N)
-   
-
-
+result = solution([1, 2, 3, 4, 5])
+print(result)
